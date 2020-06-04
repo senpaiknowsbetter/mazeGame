@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Maze Game</title>
+	<link rel="stylesheet" type="text/css" href="stylo.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+</head>
+<body>
+<div class="screens">
+    <div class="screen howToPlay">
+        <div>
+            <h2>How to play</h2>
+            <p>Move through the mazes collecting as much gold as you can along the way before the time runs out.</p>
+
+            <h3>Controls</h3>
+            <p>W/Up Arrow - Move up</p>
+            <p>D/Right Arrow - Move right</p>
+            <p>S/Down Arrow - Move down</p>
+            <p>A/Left Arrow - Move left</p>
+
+            <h3>Currency</h3>
+            <p><b>Maze Completion: </b>500 Gold</p>
+            <p><b>Gold: </b>200 Gold</p>
+
+            <h3>Penalties</h3>
+            <p>Collect all the gold inside the maze before completing it to get all gold. <br>If not, half the total golds value is deducted from the maze completion gold.</p>
+
+            <h3>Time</h3>
+            <p>You will have 60 seconds at the begining of the game. Randomly located time cells can be found throughout the mazes which add an additional 20 seconds to your time if collected.</p>
+          
+            <h3>Objects</h3>
+            <p><b>Red Triangle</b> - Your player position</p>
+          <p><b>Green Circle</b> - Endpoint to move onto the next maze</p>
+          <p><b>Golden Circle</b> - Scores points</p>
+          <p><b>Blue Circle</b> - Adds aditional time</p>
+
+            <button class="btn" onClick="changeScreen('.howToPlay', '.options')">Go back</button>
+        </div>
+    </div>
+
+    <div class="screen difficultySelect">
+        <div>
+            <fieldset>
+                <legend>Select Difficulty</legend>
+                <input type="radio" name="difficulty" value="easy" checked>Easy</input>
+                <input type="radio" name="difficulty" value="medium">Medium</input>
+                <input type="radio" name="difficulty" value="hard">Hard</input>
+            </fieldset>
+
+            <button class="btn goBack" onClick="changeScreen('.difficultySelect', '.options')">Go back</button>
+        </div>
+    </div>
+
+    <div class="screen options">
+        <div>
+            <h1>Maze Game</h1>
+            <h3>by <a href="https://www.instagram.com/manlikerathish/">@manlikerathish</a></h3>
+
+            <button onClick="changeScreen('.options', '.howToPlay')" class="btn">How to play</button>
+            <button onClick="changeScreen('.options', '.difficultySelect')"class="btn">Select Difficulty</button>
+            <button class="btn" onClick="newGame(); changeScreen('.options', '.maze')">Start</button>
+        </div>
+    </div>
+
+    <div id="maze" class="screen maze">
+        <p class="score">GOLD: 0</p>
+        <span class="timer"></span>
+    </div>
+
+    <div class="screen timeOut">
+        <div>
+            <h2>Time over!</h2>
+            <p class="successScore"></p>
+            <button class="btn" onClick="newGame(); changeScreen('.timeOut', '.maze')">Play again</button>
+        </div>
+    </div>
+</div>
+
+<p id="mazeCount" hidden>1</p>
+
+</body>
+</html>
